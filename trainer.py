@@ -7,7 +7,6 @@ import transformers
 from functools import partial
 import multiprocessing as mp
 from scipy.special import softmax
-from sklearn.preprocessing import LabelEncoder  
 from torch.utils.data import Dataset
 from transformers import (AutoTokenizer,
                           AutoModelForTokenClassification,
@@ -48,7 +47,6 @@ train_df = pd.read_csv(TRAIN_CSV)
 train_df['discourse_id'] = train_df['discourse_id'].astype('long').astype('str')
 train_df['discourse_start'] = train_df['discourse_start'].astype('int')
 train_df['discourse_end'] = train_df['discourse_end'].astype('int')
-train_df['group'] = LabelEncoder().fit_transform(train_df['id'])
 
 folds = pickle.load(open('../input/feedbackgroupshufflesplit1337/groupshufflesplit_1337.p', 'rb'))
 
