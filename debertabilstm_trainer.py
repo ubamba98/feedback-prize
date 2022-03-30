@@ -1,4 +1,5 @@
 import os
+import json
 import pickle
 import argparse
 import numpy as np
@@ -24,19 +25,21 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--fold", type=int)
 cargs = ap.parse_args()
 
-SPLIT_NUM = cargs.fold
+cfg = json.load(open('SETTINGS.json', 'r'))
 
-USE_FP16 = True
-NUM_CORES = 16
-BATCH_SIZE = 4
-GRAD_ACCUM_STEPS = 2
-NUM_EPOCHS = 5
-LR = 2e-5
-MAX_SEQ_LENGTH = 1536
+DATA_BASE_DIR = cfg["DATA_BASE_DIR"]
+LR = cfg["LR"]
+NUM_EPOCHS = cfg["NUM_EPOCHS"]
+NUM_CORES = cfg["NUM_CORES"]
+BATCH_SIZE = cfg["BATCH_SIZE"]
+USE_FP16 = cfg["USE_FP16"]
+GRAD_ACCUM_STEPS = cfg["GRAD_ACCUM_STEPS"]
+MAX_SEQ_LENGTH = cfg["MAX_SEQ_LENGTH"]
+SPLIT_NUM = cargs.fold
 PRETRAINED_MODEL = 'microsoft/deberta-large'
 
-TRAIN_CSV = '../../input/feedback-prize-2021/train.csv'
-TRAIN_DIR = '../../input/feedback-prize-2021/train/'
+TRAIN_CSV = os.path.join(DATA_BASE_DIR, 'feedback-prize-2021/train.csv')
+TRAIN_DIR = os.path.join(DATA_BASE_DIR, 'feedback-prize-2021/train/')
 
 MIN_TOKENS = {
     "Lead": 6,
@@ -54,7 +57,7 @@ train_df['discourse_start'] = train_df['discourse_start'].astype('int')
 train_df['discourse_end'] = train_df['discourse_end'].astype('int')
 train_df['group'] = LabelEncoder().fit_transform(train_df['id'])
 
-folds = pickle.load(open('../../input/feedbackgroupshufflesplit1337/groupshufflesplit_1337.p', 'rb'))
+folds = pickle.load(open(os.path.join(DATA_BASE_DIR, 'feedbackgroupshufflesplit1337/groupshufflesplit_1337.p'), 'rb'))
 
 ner_labels = ['O']
 for curr_label in train_df['discourse_type'].unique():

@@ -4,13 +4,40 @@ This is the solution for 2nd rank in Kaggle competition: Feedback Prize - Evalua
 
 ## Datasets required
 
-Download folds from https://www.kaggle.com/datasets/ubamba98/feedbackgroupshufflesplit1337
+* Download competition data from https://www.kaggle.com/competitions/feedback-prize-2021/data and extract it to ```../input/feedback-prize-2021/```
 
-Download and convert LSG Roberta from https://github.com/ccdv-ai/convert_checkpoint_to_lsg/blob/main/convert_roberta_checkpoint.py
+* Download folds from https://www.kaggle.com/datasets/ubamba98/feedbackgroupshufflesplit1337 and extract it to ```../input/feedbackgroupshufflesplit1337/groupshufflesplit_1337.p```
+
+* Download and convert LSG Roberta from https://github.com/ccdv-ai/convert_checkpoint_to_lsg/blob/main/convert_roberta_checkpoint.py and place it in ```../input/lsg-roberta-large```
+
+After this ```../input``` directory should look something like this.
+
+```
+.
+├── input
+│   ├── feedback-prize-2021
+│   │   ├── train/
+│   │   ├── test/
+│   │   ├── sample_submission.csv
+│   │   └── train.csv
+│   ├── lsg-roberta-large
+│   │   ├── config.json
+│   │   ├── merges.txt
+│   │   ├── modeling.py
+│   │   ├── pytorch_model.bin
+│   │   ├── special_tokens_map.json
+│   │   ├── tokenizer.json
+│   │   ├── tokenizer_config.json
+│   │   └── vocab.json
+│   └── feedbackgroupshufflesplit1337
+│       └── groupshufflesplit_1337.p
+```
+
+or you can change the ```DATA_BASE_DIR``` in ```SETTINGS.json``` to download the files in your desired location.
 
 ## Models and Training
 
-* Deberta large, Deberta xlarge, Deberta v2 xlarge,  Deberta v3 large, Funnel transformer large are trained using __trainer.py__
+* Deberta large, Deberta xlarge, Deberta v2 xlarge, Deberta v3 large, Funnel transformer large and BigBird are trained using __trainer.py__
 
 * Deberta large with LSTM head and jaccard loss is trained using __debertabilstm_trainer.py__
 

@@ -1,0 +1,10 @@
+{
+    "DATA_BASE_DIR": "../input/",
+    "MAX_SEQ_LENGTH": 1536,
+    "USE_FP16": true,
+    "NUM_CORES": 16,
+    "BATCH_SIZE": 4,
+    "GRAD_ACCUM_STEPS": 2,
+    "NUM_EPOCHS": 5,
+    "LR": 2e-5
+}

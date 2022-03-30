@@ -1,0 +1,18 @@
+.
+├── input
+│   ├── feedback-prize-2021
+│   │   ├── train/
+│   │   ├── test/
+│   │   ├── sample_submission.csv
+│   │   └── train.csv
+│   ├── lsg-roberta-large
+│   │   ├── config.json
+│   │   ├── merges.txt
+│   │   ├── modeling.py
+│   │   ├── pytorch_model.bin
+│   │   ├── special_tokens_map.json
+│   │   ├── tokenizer.json
+│   │   ├── tokenizer_config.json
+│   │   └── vocab.json
+│   └── feedbackgroupshufflesplit1337
+│       └── groupshufflesplit_1337.p
