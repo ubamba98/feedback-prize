@@ -39,13 +39,38 @@ or you can change the ```DATA_BASE_DIR``` in ```SETTINGS.json``` to download the
 
 * Deberta large, Deberta xlarge, Deberta v2 xlarge, Deberta v3 large, Funnel transformer large and BigBird are trained using __trainer.py__
 
+Example: 
+```bash
+$ python trainer.py --fold 0 --pretrained_model google/bigbird-roberta-large
+```
+
 * Deberta large with LSTM head and jaccard loss is trained using __debertabilstm_trainer.py__
+
+Example: 
+```bash
+$ python debertabilstm_trainer.py --fold 0
+```
 
 * Longformer large with LSTM head is trained using __longformerwithbilstm_trainer.py__
 
+Example: 
+```bash
+$ python longformerwithbilstm_trainer.py --fold 0
+```
+
 * LSG Roberta is trained with __lsgroberta_trainer.py__
 
+Example: 
+```bash
+$ python lsgroberta_trainer.py --fold 0
+```
+
 * YOSO is trained with __yoso_trainer.py__
+
+Example: 
+```bash
+$ python yoso_trainer.py --fold 0
+```
 
 ## Inference
 
