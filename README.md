@@ -43,6 +43,7 @@ Example:
 ```bash
 $ python trainer.py --fold 0 --pretrained_model google/bigbird-roberta-large
 ```
+where pretrained_model can be ```microsoft/deberta-large```, ```microsoft/deberta-xlarge```, ```microsoft/deberta-v2-xlarge```, ```microsoft/deberta-v3-large```, ```funnel-transformer/large``` or ```google/bigbird-roberta-large```
 
 * Deberta large with LSTM head and jaccard loss is trained using __debertabilstm_trainer.py__
 
