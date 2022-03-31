@@ -9,8 +9,7 @@ from functools import partial
 import multiprocessing as mp
 from scipy.special import softmax
 from torch.utils.data import Dataset
-from transformers import (AutoTokenizer,
-                          AutoModelForTokenClassification,
+from transformers import (AutoModelForTokenClassification,
                           DataCollatorForTokenClassification, 
                           TrainingArguments, 
                           Trainer,
@@ -20,6 +19,11 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--fold", type=int)
 ap.add_argument("--pretrained_model", type=str)
 cargs = ap.parse_args()
+
+if ("deberta-v3" in cargs.pretrained_model)|("deberta-v2" in cargs.pretrained_model):
+    from transformers.models.deberta_v2.tokenization_deberta_v2_fast import DebertaV2TokenizerFast as AutoTokenizer
+else:
+    from transformers import AutoTokenizer
 
 cfg = json.load(open('SETTINGS.json', 'r'))
 
