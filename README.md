@@ -15,7 +15,7 @@ $ python convert_roberta_checkpoint.py \
                         --model_name lsg-roberta-large \
                         --max_sequence_length 1536
 ```
-* Download and convert tokenizer to fast for Deberta V2/V3 from https://www.kaggle.com/datasets/nbroad/deberta-v2-3-fast-tokenizer and extract it to ```../input/deberta-v2-3-fast-tokenizer/```
+* Download fast tokenizer for Deberta V2/V3 from https://www.kaggle.com/datasets/nbroad/deberta-v2-3-fast-tokenizer and extract it to ```../input/deberta-v2-3-fast-tokenizer/```
 
 Follow following instructions to manually add fast tokenizer to transformer library:
 
