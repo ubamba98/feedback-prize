@@ -7,7 +7,7 @@ This is the solution for 2nd rank in Kaggle competition: Feedback Prize - Evalua
 * Download competition data from https://www.kaggle.com/competitions/feedback-prize-2021/data and extract it to ```../input/feedback-prize-2021/```
 * Download folds from https://www.kaggle.com/datasets/ubamba98/feedbackgroupshufflesplit1337 and extract it to ```../input/feedbackgroupshufflesplit1337/groupshufflesplit_1337.p```
 * Download and convert LSG Roberta from https://github.com/ccdv-ai/convert_checkpoint_to_lsg/blob/main/convert_roberta_checkpoint.py and place it in ```../input/lsg-roberta-large```
-* Download and convert to tokenizer to fast for Deberta V2 from https://www.kaggle.com/datasets/nbroad/deberta-v2-3-fast-tokenizer 
+* Download and convert tokenizer to fast for Deberta V2 from https://www.kaggle.com/datasets/nbroad/deberta-v2-3-fast-tokenizer 
 
 After this ```../input``` directory should look something like this.
 
