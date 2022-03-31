@@ -7,7 +7,45 @@ This is the solution for 2nd rank in Kaggle competition: Feedback Prize - Evalua
 * Download competition data from https://www.kaggle.com/competitions/feedback-prize-2021/data and extract it to ```../input/feedback-prize-2021/```
 * Download folds from https://www.kaggle.com/datasets/ubamba98/feedbackgroupshufflesplit1337 and extract it to ```../input/feedbackgroupshufflesplit1337/groupshufflesplit_1337.p```
 * Download and convert LSG Roberta from https://github.com/ccdv-ai/convert_checkpoint_to_lsg/blob/main/convert_roberta_checkpoint.py and place it in ```../input/lsg-roberta-large```
-* Download and convert tokenizer to fast for Deberta V2 from https://www.kaggle.com/datasets/nbroad/deberta-v2-3-fast-tokenizer 
+
+Use this command to convert roberta-large to LSG
+```bash
+$ python convert_roberta_checkpoint.py \
+                        --initial_model roberta-large \
+                        --model_name lsg-roberta-large \
+                        --max_sequence_length 1536
+```
+* Download and convert tokenizer to fast for Deberta V2/V3 from https://www.kaggle.com/datasets/nbroad/deberta-v2-3-fast-tokenizer and extract it to ```../input/deberta-v2-3-fast-tokenizer/```
+
+Follow following instructions to manually add fast tokenizer to transformer library:
+
+```python
+# The following is necessary if you want to use the fast tokenizer for deberta v2 or v3
+# This must be done before importing transformers
+import shutil
+from pathlib import Path
+
+# Path to installed transformer library
+transformers_path = Path("/opt/conda/lib/python3.7/site-packages/transformers")
+
+input_dir = Path("../input/deberta-v2-3-fast-tokenizer")
+
+convert_file = input_dir / "convert_slow_tokenizer.py"
+conversion_path = transformers_path/convert_file.name
+
+if conversion_path.exists():
+    conversion_path.unlink()
+
+shutil.copy(convert_file, transformers_path)
+deberta_v2_path = transformers_path / "models" / "deberta_v2"
+
+for filename in ['tokenization_deberta_v2.py', 'tokenization_deberta_v2_fast.py']:
+    filepath = deberta_v2_path/filename
+    if filepath.exists():
+        filepath.unlink()
+
+    shutil.copy(input_dir/filename, filepath)
+```
 
 After this ```../input``` directory should look something like this.
 
@@ -28,6 +66,13 @@ After this ```../input``` directory should look something like this.
 │   │   ├── tokenizer.json
 │   │   ├── tokenizer_config.json
 │   │   └── vocab.json
+│   ├── deberta-v2-3-fast-tokenizer
+│   │   ├── convert_slow_tokenizer.py
+│   │   ├── deberta__init__.py
+│   │   ├── tokenization_auto.py
+│   │   ├── tokenization_deberta_v2.py
+│   │   ├── tokenization_deberta_v2_fast.py
+│   │   └── transformers__init__.py
 │   └── feedbackgroupshufflesplit1337
 │       └── groupshufflesplit_1337.p
 ```
